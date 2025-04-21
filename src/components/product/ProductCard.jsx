@@ -1,17 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ShoppingCart, Star } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../redux/cartSlice";
 import { toast } from "react-toastify";
 import RatingBadge from "./RatingBadge";
 
-
 function ProductCard({ product }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
 
   const handleCardClick = () => {
     navigate(`/products/${product.id}`);
@@ -48,17 +46,16 @@ function ProductCard({ product }) {
               based on {product.reviews.length} Reviews
             </span>
           </div>
-
         </div>
         <div className="flex flex-wrap md:flex-col md:items-start items-center justify-between gap-4">
           <div>
             <p className="text-xl font-bold text-primary mb-1">
-              ₹{product.price.toFixed(2)}
+              ${product.price.toFixed(2)}
             </p>
             {product.discountPercentage && (
               <div className="flex items-center space-x-2">
                 <p className="text-sm text-muted-foreground line-through">
-                  ₹
+                  $
                   {(
                     product.price /
                     (1 - product.discountPercentage / 100)
@@ -70,18 +67,15 @@ function ProductCard({ product }) {
               </div>
             )}
           </div>
-          <motion.button
+          <button
             onClick={handleAddToCart}
             className="add-to-cart flex-1 md:flex-initial bg-primary text-primary-foreground py-2 px-4 rounded flex items-center justify-center gap-2 hover:bg-primary/80 active:scale-95 transition-colors md:w-auto md:self-end group text-nowrap"
           >
-            <motion.div
-              className="cart-icon group-hover:translate-x-[-3px] group-hover:translate-y-[-3px]"
-              transition={{ type: "spring", stiffness: 200, damping: 20 }}
-            >
+            <div className="cart-icon group-hover:translate-x-[-5px] group-hover:translate-y-[-3px] transition-transform duration-75 ease-in-out">
               <ShoppingCart className="w-5 h-5" />
-            </motion.div>
+            </div>
             <span>Add to Cart</span>
-          </motion.button>
+          </button>
         </div>
       </div>
     </div>

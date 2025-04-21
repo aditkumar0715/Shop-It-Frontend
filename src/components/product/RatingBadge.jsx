@@ -1,5 +1,6 @@
 import React from "react";
 import { Star } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function RatingBadge({ rating }) {
   let ratingClass = "bg-destructive text-destructive-foreground";
@@ -11,11 +12,18 @@ export default function RatingBadge({ rating }) {
   }
 
   return (
-    <div
+    <motion.div
+      whileHover={{
+        rotate: [0, -3, 3, -2, 2, 0], // little back-and-forth shake
+      }}
+      transition={{
+        duration: 0.4,
+        ease: "easeInOut",
+      }}
       className={`inline-flex items-center px-2 py-1 rounded text-sm font-semibold ${ratingClass}`}
     >
       {rating.toFixed(1)}
       <Star className="w-4 h-4 ml-1" fill="currentColor" strokeWidth={0} />
-    </div>
+    </motion.div>
   );
 }

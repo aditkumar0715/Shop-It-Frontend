@@ -4,7 +4,7 @@ import React from "react";
 const ProductListLoader = () => {
   return (
     <div className="flex flex-col gap-4 p-4">
-      {[...Array(8)].map((_, index) => (
+      {[...Array(5)].map((_, index) => (
         <div
           key={index}
           className="product-card-container bg-card text-card-foreground shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow flex flex-wrap gap-4 animate-pulse"

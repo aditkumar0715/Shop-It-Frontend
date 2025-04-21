@@ -40,7 +40,7 @@ export default function ImageSwiper({ images }) {
   };
 
   return (
-    <div className="relative overflow-hidden bg-card text-card-foreground">
+    <div className="relative overflow-hidden bg-background text-foreground rounded-md">
       <motion.div
         ref={carousel}
         className="flex space-x-4 overflow-x-scroll hide-scrollbar"
@@ -66,26 +66,32 @@ export default function ImageSwiper({ images }) {
           </motion.div>
         ))}
       </motion.div>
-      <button
-        onClick={() => scroll(-300)}
-        disabled={!canScrollLeft}
-        className={`absolute top-1/2 left-2 transform -translate-y-1/2 p-2 rounded bg-muted text-muted-foreground shadow ${
-          !canScrollLeft ? "opacity-50 cursor-not-allowed" : "hover:bg-muted/80"
-        }`}
-      >
-        <ChevronLeft size={24} />
-      </button>
-      <button
-        onClick={() => scroll(300)}
-        disabled={!canScrollRight}
-        className={`absolute top-1/2 right-2 transform -translate-y-1/2 p-2 rounded bg-muted text-muted-foreground shadow ${
-          !canScrollRight
-            ? "opacity-50 cursor-not-allowed"
-            : "hover:bg-muted/80"
-        }`}
-      >
-        <ChevronRight size={24} />
-      </button>
+      {images.length > 1 && (
+        <button
+          onClick={() => scroll(-300)}
+          disabled={!canScrollLeft}
+          className={`absolute top-1/2 left-2 transform -translate-y-1/2 p-2 rounded bg-muted text-muted-foreground shadow ${
+            !canScrollLeft
+              ? "opacity-50 cursor-not-allowed"
+              : "hover:bg-muted/80"
+          }`}
+        >
+          <ChevronLeft size={24} />
+        </button>
+      )}
+
+      {images.length > 1 && (
+        <button
+          onClick={() => scroll(300)}
+          disabled={!canScrollRight}
+          className={`absolute top-1/2 right-2 transform -translate-y-1/2 p-2 rounded bg-muted text-muted-foreground shadow ${!canScrollRight
+              ? "opacity-50 cursor-not-allowed"
+              : "hover:bg-muted/80"
+            }`}
+        >
+          <ChevronRight size={24} />
+        </button>
+      )}
     </div>
   );
 }

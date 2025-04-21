@@ -1,6 +1,7 @@
 import React from "react";
 import ReviewItem from "./ReviewItem";
 
+
 export default function ReviewsList({ reviews }) {
   return (
     <div className="bg-card p-4 rounded-lg space-y-6">

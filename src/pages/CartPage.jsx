@@ -5,6 +5,7 @@ import { removeItem, updateQuantity, addItem } from "../redux/cartSlice";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { Box, ShoppingCart } from "lucide-react";
+import { Link } from "react-router";
 
 function EmptyCart() {
   return (
@@ -18,9 +19,15 @@ function EmptyCart() {
       </motion.div>
       <ShoppingCart className="w-24 h-24 text-muted-foreground" />
       <p className="text-lg font-bold mt-4">Your cart is empty!</p>
-      <p className="text-sm text-muted-foreground mt-2">
+      <p className="text-sm text-muted-foreground mt-1">
         Go ahead, add something to your cart. It’s lonely in here!
       </p>
+      <Link
+        to="/"
+        className="mt-3 text-sm sm:text-base text-primary hover:underline"
+      >
+        Take me shopping!
+      </Link>
     </div>
   );
 }

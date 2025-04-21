@@ -9,7 +9,7 @@ import ProductLoader from "../components/product/ProductLoader";
 import ImageSwiper from "../components/swiper/ImageSwiper";
 import SectionCarousel from "../components/product/SectionCarousel";
 import ReviewsList from "../components/reviews/ReviewsList";
-
+import RatingBadge from "../components/product/RatingBadge";
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -40,54 +40,81 @@ export default function ProductDetails() {
         <div className="lg:w-1/3">
           <ImageSwiper images={product.images} />
         </div>
-        <div className="flex-1">
-          <h1 className="text-3xl font-bold mb-4">{product.title}</h1>
-          <p className="text-muted-foreground mb-4 text-lg">
+        <div className="flex-1 flex flex-col">
+          <h1 className=" order-1 text-3xl font-bold mb-4">{product.title}</h1>
+          <p className=" order-2 text-muted-foreground mb-4 text-lg">
             {product.description}
           </p>
-          <p className="text-xl font-semibold mb-4 text-primary">
-            ${product.price.toFixed(2)}
-          </p>
-          <div className="grid grid-cols-2 gap-4">
-            <p className="text-sm text-muted-foreground">
+          <div className="order-3 flex items-baseline gap-2 mb-4">
+            <p className="text-xl font-bold text-primary mb-1">
+              ${product.price.toFixed(2)}
+            </p>
+            {product.discountPercentage && (
+              <div className="flex space-x-2">
+                <p className="text-base text-muted-foreground line-through">
+                  $
+                  {(
+                    product.price /
+                    (1 - product.discountPercentage / 100)
+                  ).toFixed(2)}
+                </p>
+                <p className="text-base text-success font-semibold">
+                  {product.discountPercentage}% off
+                </p>
+              </div>
+            )}
+          </div>
+          <div className="order-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <p className="text-base text-muted-foreground">
               Category:{" "}
               <span className="text-foreground">{product.category}</span>
             </p>
-            <p className="text-sm text-muted-foreground">
-              Brand: <span className="text-foreground">{product.brand}</span>
+            <p className="text-base text-muted-foreground">
+              Brand:{" "}
+              <span className="text-foreground">
+                {product.brand || "Unknown"}
+              </span>
             </p>
-            <p className="text-sm text-muted-foreground">
-              Weight: <span className="text-foreground">{product.weight}kg</span>
+            <p className="text-base text-muted-foreground">
+              Weight:{" "}
+              <span className="text-foreground">{product.weight}kg</span>
             </p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               Dimensions:{" "}
               <span className="text-foreground">
                 {product.dimensions.width} x {product.dimensions.height} x{" "}
                 {product.dimensions.depth}
               </span>
             </p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               Warranty:{" "}
               <span className="text-foreground">
                 {product.warrantyInformation}
               </span>
             </p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               Shipping:{" "}
               <span className="text-foreground">
                 {product.shippingInformation}
               </span>
             </p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               Availability:{" "}
               <span className="text-foreground">
                 {product.availabilityStatus}
               </span>
             </p>
+            <p className="inline-flex items-center gap-2 text-base text-muted-foreground">
+              Rating:
+              <div className="text-foreground scale-75 origin-left">
+                <RatingBadge rating={product.rating} />
+              </div>
+              
+            </p>
           </div>
           <button
             onClick={handleAddToCart}
-            className="add-to-cart bg-primary text-primary-foreground py-2 px-4 rounded mt-6 hover:bg-primary/80 active:scale-95 transition-colors w-full md:w-auto"
+            className="add-to-cart order-4 md:order-6 self-end bg-primary text-primary-foreground py-2 px-4 rounded mb-6 md:mt-6 hover:bg-primary/80 active:scale-95 transition-colors w-full md:w-auto"
           >
             Add to Cart
           </button>
@@ -95,13 +122,10 @@ export default function ProductDetails() {
       </div>
 
       {/* Reviews */}
-      <ReviewsList reviews={product.reviews} />
+      <ReviewsList reviews={product.reviews} rating={product.rating} />
 
       {/* More from this Category */}
-      <SectionCarousel
-        title={product.category}
-        category={product.category}
-      />
+      <SectionCarousel title={product.category} category={product.category} />
 
       {/* People Also Like */}
       {/* <SectionCarousel
