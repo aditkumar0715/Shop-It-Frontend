@@ -25,6 +25,8 @@ function CategoryList() {
   useEffect(() => {
     if (urlCategory) {
       dispatch(setCategory(urlCategory));
+    } else {
+      dispatch(setCategory(""));
     }
   }, [urlCategory, dispatch]);
 
