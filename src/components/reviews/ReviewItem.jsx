@@ -4,11 +4,14 @@ import { motion } from "framer-motion";
 
 export default function ReviewItem({ review }) {
   return (
-    <motion.div className="bg-background p-4 rounded-lg space-y-4" whileHover={{ scale: 1.02 }}>
+    <motion.div
+      className="bg-background space-y-4 rounded-lg p-4"
+      whileHover={{ scale: 1.02 }}
+    >
       {/* Top row: rating and date */}
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <RatingBadge rating={review.rating} />
-        <p className="text-xs text-muted-foreground">
+        <p className="text-muted-foreground text-xs">
           {new Date(review.date).toLocaleDateString()}
         </p>
       </div>
@@ -16,7 +19,7 @@ export default function ReviewItem({ review }) {
       {/* Review text + reviewer */}
       <p className="text-foreground">
         <span className="font-medium">Review:</span> {review.comment}{" "}
-        <span className="text-sm text-muted-foreground">
+        <span className="text-muted-foreground text-sm">
           ({review.reviewerName})
         </span>
       </p>

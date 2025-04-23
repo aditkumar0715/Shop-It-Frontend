@@ -23,14 +23,14 @@ function SortDropdown({ onSortChange }) {
   };
 
   return (
-    <div className="sort-dropdown-container justify-end flex flex-wrap gap-2">
+    <div className="sort-dropdown-container flex flex-wrap justify-end gap-2">
       {/* Sort By Dropdown */}
       <div className="sort-option flex-1">
-        <label className="block text-sm text-muted-foreground">Sort By</label>
+        <label className="text-muted-foreground block text-sm">Sort By</label>
         <select
           value={sortBy}
           onChange={handleSortByChange}
-          className="w-full min-w-16 p-1 border border-muted rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-card text-card-foreground"
+          className="border-muted focus:ring-primary bg-card text-card-foreground w-full min-w-16 rounded-md border p-1 focus:ring-2 focus:outline-none"
         >
           <option value="title">Title</option>
           <option value="price">Price</option>
@@ -41,11 +41,11 @@ function SortDropdown({ onSortChange }) {
 
       {/* Order Dropdown */}
       <div className="sort-option flex-1">
-        <label className="block text-sm text-muted-foreground">Order</label>
+        <label className="text-muted-foreground block text-sm">Order</label>
         <select
           value={order}
           onChange={handleOrderChange}
-          className="w-full min-w-28 p-1 border border-muted rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-card text-card-foreground"
+          className="border-muted focus:ring-primary bg-card text-card-foreground w-full min-w-28 rounded-md border p-1 focus:ring-2 focus:outline-none"
         >
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>

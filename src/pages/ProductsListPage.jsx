@@ -17,7 +17,7 @@ const NoResults = () => {
       initial={{ opacity: 0, y: 20, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="flex flex-col items-center justify-center px-6 py-20 sm:py-28 text-center bg-background text-foreground"
+      className="bg-background text-foreground flex flex-col items-center justify-center px-6 py-20 text-center sm:py-28"
     >
       <motion.div
         animate={{ rotate: [0, -5, 5, -3, 3, 0] }}
@@ -27,18 +27,18 @@ const NoResults = () => {
         <Ghost size={72} className="stroke-primary" strokeWidth={1.5} />
       </motion.div>
 
-      <h2 className="mt-6 text-2xl sm:text-3xl font-semibold text-card-foreground">
+      <h2 className="text-card-foreground mt-6 text-2xl font-semibold sm:text-3xl">
         Uh oh... nothing here!
       </h2>
 
-      <p className="mt-3 text-sm sm:text-base text-muted-foreground max-w-md">
+      <p className="text-muted-foreground mt-3 max-w-md text-sm sm:text-base">
         We looked everywhere but couldn’t find your query,
         <br />
         Maybe try searching for something else.
       </p>
       <Link
         to="/"
-        className="mt-2 text-sm sm:text-base text-primary hover:underline"
+        className="text-primary mt-2 text-sm hover:underline sm:text-base"
       >
         Find something amazing!
       </Link>
@@ -97,8 +97,8 @@ function ProductsListPage() {
 
   return (
     <div className="products-page bg-background text-foreground p-4">
-      <div className="header bg-card text-card-foreground p-4 rounded-md mb-4 flex items-center justify-between gap-4">
-        <p className="text-lg font-medium text-muted-foreground">
+      <div className="header bg-card text-card-foreground mb-4 flex items-center justify-between gap-4 rounded-md p-4">
+        <p className="text-muted-foreground text-lg font-medium">
           {productsDetail.total} results found
         </p>
         <SortDropdown

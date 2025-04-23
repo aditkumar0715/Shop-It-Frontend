@@ -9,22 +9,22 @@ import { Link } from "react-router";
 
 function EmptyCart() {
   return (
-    <div className="flex flex-col items-center justify-center text-center min-h-[60vh]">
+    <div className="flex min-h-[60vh] flex-col items-center justify-center text-center">
       <motion.div
         animate={{ y: [0, 50, 0] }}
         transition={{ duration: 1, repeat: Infinity, repeatType: "loop" }}
         className="text-primary mb-4"
       >
-        <Box className="w-16 h-16 ml-4" />
+        <Box className="ml-4 h-16 w-16" />
       </motion.div>
-      <ShoppingCart className="w-24 h-24 text-muted-foreground" />
-      <p className="text-lg font-bold mt-4">Your cart is empty!</p>
-      <p className="text-sm text-muted-foreground mt-1">
+      <ShoppingCart className="text-muted-foreground h-24 w-24" />
+      <p className="mt-4 text-lg font-bold">Your cart is empty!</p>
+      <p className="text-muted-foreground mt-1 text-sm">
         Go ahead, add something to your cart. It’s lonely in here!
       </p>
       <Link
         to="/"
-        className="mt-3 text-sm sm:text-base text-primary hover:underline"
+        className="text-primary mt-3 text-sm hover:underline sm:text-base"
       >
         Take me shopping!
       </Link>
@@ -36,7 +36,7 @@ function CartPage() {
   const cartItems = useSelector((state) => state.cart.items);
   const totalPrice = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
-    0
+    0,
   );
   const dispatch = useDispatch();
 
@@ -68,7 +68,7 @@ function CartPage() {
       {cartItems.length === 0 ? (
         <EmptyCart />
       ) : (
-        <div className="flex flex-col-reverse md:flex-row gap-6">
+        <div className="flex flex-col-reverse gap-6 md:flex-row">
           <div className="cart-items flex-1">
             {cartItems.map((item) => (
               <CartItem
@@ -79,8 +79,8 @@ function CartPage() {
               />
             ))}
           </div>
-          <div className="order-summary w-full bg-card text-card-foreground shadow-md rounded-lg p-4 md:w-1/3 md:sticky md:top-4 self-start">
-            <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+          <div className="order-summary bg-card text-card-foreground w-full self-start rounded-lg p-4 shadow-md md:sticky md:top-4 md:w-1/3">
+            <h2 className="mb-4 text-xl font-bold">Order Summary</h2>
             <div className="mb-2 flex justify-between">
               <span>Subtotal:</span>
               <span>${totalPrice.toFixed(2)}</span>
@@ -93,14 +93,14 @@ function CartPage() {
               <span>Delivery Charges:</span>
               <span>${deliveryCharges.toFixed(2)}</span>
             </div>
-            <div className="mb-4 flex justify-between font-bold text-lg">
+            <div className="mb-4 flex justify-between text-lg font-bold">
               <span>Total:</span>
               <span>${finalAmount.toFixed(2)}</span>
             </div>
-            <button className="place-order bg-primary text-primary-foreground py-2 px-4 rounded w-full hover:bg-primary/80 active:scale-95 transition-colors">
+            <button className="place-order bg-primary text-primary-foreground hover:bg-primary/80 w-full rounded px-4 py-2 transition-colors active:scale-95">
               Place Order
             </button>
-            <p className="text-green-600 text-lg font-bold mt-2">
+            <p className="mt-2 text-lg font-bold text-green-600">
               You save ${discountAmount.toFixed(2)} on this order
             </p>
           </div>

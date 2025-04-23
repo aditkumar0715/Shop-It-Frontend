@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useNavigate, useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { setCategory } from "../../redux/searchSlice";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -8,7 +8,7 @@ import { getAllCategories } from "../../services/productService";
 function CategoryList() {
   const [categories, setCategories] = useState([]);
   const scrollRef = useRef(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
   const { category: urlCategory } = useParams();
   const activeCategory = useSelector((state) => state.search.category);
@@ -39,41 +39,37 @@ function CategoryList() {
     }
   };
 
-  const handleCategoryClick = (category) => {
-    navigate(`/category/${category.slug}`);
-  };
-
   return (
-    <div className="bg-muted p-2 flex justify-between items-center gap-2">
+    <div className="bg-muted flex items-center justify-between gap-2 p-2">
       <button
         onClick={() => handleScroll("left")}
-        className="bg-card text-card-foreground px-3 py-2 rounded-md shadow-md hidden md:block"
+        className="bg-card text-card-foreground hidden rounded-md px-3 py-2 shadow-md md:block"
       >
-        <ChevronLeft className="w-5 h-5" />
+        <ChevronLeft className="h-5 w-5" />
       </button>
       <div
         ref={scrollRef}
-        className="flex overflow-x-auto gap-2 hide-scrollbar"
+        className="hide-scrollbar flex gap-2 overflow-x-auto"
       >
         {categories.map((category) => (
-          <button
+          <Link
             key={category.slug}
-            onClick={() => handleCategoryClick(category)}
-            className={`px-4 py-2 rounded-md whitespace-nowrap outline-none ${
+            to={`/category/${category.slug}`}
+            className={`cursor-pointer rounded-md px-4 py-2 whitespace-nowrap outline-none active:scale-95 ${
               activeCategory === category.slug
                 ? "bg-primary text-primary-foreground"
                 : "bg-card text-card-foreground"
             }`}
           >
             {category.name}
-          </button>
+          </Link>
         ))}
       </div>
       <button
         onClick={() => handleScroll("right")}
-        className="bg-card text-card-foreground px-3 py-2 rounded-md shadow-md hidden md:block"
+        className="bg-card text-card-foreground hidden rounded-md px-3 py-2 shadow-md md:block"
       >
-        <ChevronRight className="w-5 h-5" />
+        <ChevronRight className="h-5 w-5" />
       </button>
     </div>
   );

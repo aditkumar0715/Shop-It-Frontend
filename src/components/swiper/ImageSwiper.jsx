@@ -40,10 +40,10 @@ export default function ImageSwiper({ images }) {
   };
 
   return (
-    <div className="relative overflow-hidden bg-background text-foreground rounded-md">
+    <div className="bg-background text-foreground relative overflow-hidden rounded-md">
       <motion.div
         ref={carousel}
-        className="flex space-x-4 overflow-x-scroll hide-scrollbar"
+        className="hide-scrollbar flex space-x-4 overflow-x-scroll"
         drag="x"
         dragConstraints={{ left: 0, right: 0 }}
         dragElastic={0.1}
@@ -60,7 +60,7 @@ export default function ImageSwiper({ images }) {
             <motion.img
               src={src}
               alt={`Slide ${idx + 1}`}
-              className="w-full h-64 object-contain rounded-lg shadow"
+              className="h-64 w-full rounded-lg object-contain shadow"
               whileHover={{ scale: 1.05 }}
             />
           </motion.div>
@@ -70,9 +70,9 @@ export default function ImageSwiper({ images }) {
         <button
           onClick={() => scroll(-300)}
           disabled={!canScrollLeft}
-          className={`absolute top-1/2 left-2 transform -translate-y-1/2 p-2 rounded bg-muted text-muted-foreground shadow ${
+          className={`bg-muted text-muted-foreground absolute top-1/2 left-2 -translate-y-1/2 transform rounded p-2 shadow ${
             !canScrollLeft
-              ? "opacity-50 cursor-not-allowed"
+              ? "cursor-not-allowed opacity-50"
               : "hover:bg-muted/80"
           }`}
         >
@@ -84,10 +84,11 @@ export default function ImageSwiper({ images }) {
         <button
           onClick={() => scroll(300)}
           disabled={!canScrollRight}
-          className={`absolute top-1/2 right-2 transform -translate-y-1/2 p-2 rounded bg-muted text-muted-foreground shadow ${!canScrollRight
-              ? "opacity-50 cursor-not-allowed"
+          className={`bg-muted text-muted-foreground absolute top-1/2 right-2 -translate-y-1/2 transform rounded p-2 shadow ${
+            !canScrollRight
+              ? "cursor-not-allowed opacity-50"
               : "hover:bg-muted/80"
-            }`}
+          }`}
         >
           <ChevronRight size={24} />
         </button>

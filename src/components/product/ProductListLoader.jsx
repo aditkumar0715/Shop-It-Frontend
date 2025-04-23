@@ -7,18 +7,18 @@ const ProductListLoader = () => {
       {[...Array(5)].map((_, index) => (
         <div
           key={index}
-          className="product-card-container bg-card text-card-foreground shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow flex flex-wrap gap-4 animate-pulse"
+          className="product-card-container bg-card text-card-foreground flex animate-pulse flex-wrap gap-4 rounded-lg p-4 shadow-md transition-shadow hover:shadow-lg"
         >
-          <div className="w-full md:w-1/3 h-56 bg-muted rounded-md"></div>
-          <div className="flex flex-col flex-1 gap-4">
-            <div className="h-6 bg-muted rounded w-3/4"></div>
-            <div className="h-4 bg-muted rounded w-1/2"></div>
+          <div className="bg-muted h-56 w-full rounded-md md:w-1/3"></div>
+          <div className="flex flex-1 flex-col gap-4">
+            <div className="bg-muted h-6 w-3/4 rounded"></div>
+            <div className="bg-muted h-4 w-1/2 rounded"></div>
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div>
-                <div className="h-6 bg-muted rounded w-1/4 mb-1"></div>
-                <div className="h-4 bg-muted rounded w-1/3"></div>
+                <div className="bg-muted mb-1 h-6 w-1/4 rounded"></div>
+                <div className="bg-muted h-4 w-1/3 rounded"></div>
               </div>
-              <div className="h-10 bg-muted rounded w-1/3"></div>
+              <div className="bg-muted h-10 w-1/3 rounded"></div>
             </div>
           </div>
         </div>

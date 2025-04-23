@@ -5,12 +5,12 @@ const initialState = {
   totalQuantity:
     JSON.parse(localStorage.getItem("cartItems"))?.reduce(
       (acc, item) => acc + item.quantity,
-      0
+      0,
     ) || 0,
   totalPrice:
     JSON.parse(localStorage.getItem("cartItems"))?.reduce(
       (acc, item) => acc + item.price * item.quantity,
-      0
+      0,
     ) || 0,
 };
 
@@ -35,11 +35,11 @@ const cartSlice = createSlice({
       state.items = state.items.filter((item) => item.id !== id);
       state.totalQuantity = state.items.reduce(
         (acc, item) => acc + item.quantity,
-        0
+        0,
       );
       state.totalPrice = state.items.reduce(
         (acc, item) => acc + item.price * item.quantity,
-        0
+        0,
       );
       updateLocalStorage(state.items);
     },
@@ -50,11 +50,11 @@ const cartSlice = createSlice({
         existingItem.quantity = quantity;
         state.totalQuantity = state.items.reduce(
           (acc, item) => acc + item.quantity,
-          0
+          0,
         );
         state.totalPrice = state.items.reduce(
           (acc, item) => acc + item.price * item.quantity,
-          0
+          0,
         );
         updateLocalStorage(state.items);
       }

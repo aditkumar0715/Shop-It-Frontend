@@ -33,20 +33,20 @@ function SearchBar() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full flex items-center">
+    <form onSubmit={handleSubmit} className="flex w-full items-center">
       <input
         type="text"
         name="search"
         placeholder="Search products..."
         value={inputValue}
         onChange={handleInputChange}
-        className="search-bar min-w-20 flex-1 p-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-1 focus:ring-primary h-10"
+        className="search-bar focus:ring-primary h-10 min-w-20 flex-1 rounded-l-md border border-gray-300 p-2 focus:ring-1 focus:outline-none"
       />
       <button
         type="submit"
-        className="search-button bg-secondary text-secondary-foreground p-2 rounded-r-md hover:bg-secondary/80 active:scale-95 transition-colors flex items-center justify-center h-10"
+        className="search-button bg-secondary text-secondary-foreground hover:bg-secondary/80 flex h-10 items-center justify-center rounded-r-md p-2 transition-colors active:scale-95"
       >
-        <Search className="w-5 h-5" />
+        <Search className="h-5 w-5" />
       </button>
     </form>
   );

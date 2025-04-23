@@ -26,42 +26,42 @@ function Navbar({ onSearch }) {
   };
 
   return (
-    <div className="navbar bg-background text-foreground shadow-md p-4 flex items-center justify-between">
+    <div className="navbar bg-background text-foreground flex items-center justify-between p-4 shadow-md">
       <Link
         to="/"
-        className="logo hidden md:block text-xl font-bold text-primary"
+        className="logo text-primary hidden text-xl font-bold md:block"
       >
         Shop-It
       </Link>
       <Link
         to="/"
-        className="logo block md:hidden text-xl font-bold text-primary"
+        className="logo text-primary block text-xl font-bold md:hidden"
       >
         SI
       </Link>
-      <div className="search-bar-container flex-1 mx-4 min-w-20">
+      <div className="search-bar-container mx-4 min-w-20 flex-1">
         <SearchBar onSearch={onSearch} />
       </div>
       <div className="flex items-center space-x-4">
         <button
           onClick={() => navigate("/cart")}
-          className="cart flex items-center relative"
+          className="cart relative flex items-center"
         >
-          <ShoppingCart className="w-6 h-6" />{" "}
+          <ShoppingCart className="h-6 w-6" />{" "}
           {cartItems.length > 0 && (
-            <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+            <span className="bg-primary text-primary-foreground absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold">
               {cartItems.length}
             </span>
           )}
         </button>
         <button
           onClick={toggleMenu}
-          className="hamburger-menu flex items-center bg-muted text-muted-foreground px-2 py-1 rounded hover:bg-accent hover:text-accent-foreground transition-colors md:hidden"
+          className="hamburger-menu bg-muted text-muted-foreground hover:bg-accent hover:text-accent-foreground flex items-center rounded px-2 py-1 transition-colors md:hidden"
         >
           {isMenuOpen ? (
-            <X className="w-6 h-6" />
+            <X className="h-6 w-6" />
           ) : (
-            <Menu className="w-6 h-6" />
+            <Menu className="h-6 w-6" />
           )}
         </button>
       </div>
@@ -73,40 +73,40 @@ function Navbar({ onSearch }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="absolute z-10 top-16 right-0 bg-card text-card-foreground shadow-md rounded p-4 w-48 md:hidden flex flex-col gap-4"
+            className="bg-card text-card-foreground absolute top-16 right-0 z-10 flex w-48 flex-col gap-4 rounded p-4 shadow-md md:hidden"
           >
             <button
               onClick={() => navigate("/login")}
-              className="w-full text-left py-2 px-4 rounded hover:bg-muted hover:text-muted-foreground transition-colors flex items-center gap-2"
+              className="hover:bg-muted hover:text-muted-foreground flex w-full items-center gap-2 rounded px-4 py-2 text-left transition-colors"
             >
-              <User className="w-6 h-6" /> Login
+              <User className="h-6 w-6" /> Login
             </button>
             <button
               onClick={() => dispatch(toggleTheme())}
-              className="w-full text-center py-2 px-4 rounded hover:bg-muted hover:text-muted-foreground transition-colors flex items-center justify-center gap-2"
+              className="hover:bg-muted hover:text-muted-foreground flex w-full items-center justify-center gap-2 rounded px-4 py-2 text-center transition-colors"
             >
               {theme === "light" ? (
-                <Moon className="w-8 h-8" />
+                <Moon className="h-8 w-8" />
               ) : (
-                <Sun className="w-8 h-8" />
+                <Sun className="h-8 w-8" />
               )}
               <span className="text-sm">Switch Theme</span>
             </button>
           </motion.div>
         )}
       </AnimatePresence>
-      <div className="actions hidden md:flex items-center space-x-4">
-        <button className="login flex items-center bg-muted text-muted-foreground py-2 px-4 rounded hover:bg-accent hover:text-accent-foreground transition-colors">
-          <User className="w-5 h-5 mr-2" /> Login
+      <div className="actions hidden items-center space-x-4 md:flex">
+        <button className="login bg-muted text-muted-foreground hover:bg-accent hover:text-accent-foreground flex items-center rounded px-4 py-2 transition-colors">
+          <User className="mr-2 h-5 w-5" /> Login
         </button>
         <button
           onClick={() => dispatch(toggleTheme())}
-          className="theme-toggle flex items-center bg-muted text-muted-foreground py-2 px-4 rounded hover:bg-accent hover:text-accent-foreground transition-colors"
+          className="theme-toggle bg-muted text-muted-foreground hover:bg-accent hover:text-accent-foreground flex items-center rounded px-4 py-2 transition-colors"
         >
           {theme === "light" ? (
-            <Moon className="w-5 h-5" />
+            <Moon className="h-5 w-5" />
           ) : (
-            <Sun className="w-5 h-5" />
+            <Sun className="h-5 w-5" />
           )}
         </button>
       </div>

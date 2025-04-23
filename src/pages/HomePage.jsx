@@ -1,48 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { getProducts } from "../services/productService";
-import ProductCard from "../components/product/ProductCard";
-import PaginationControls from "../components/common/PaginationControls";
-import ProductListLoader from "../components/product/ProductListLoader";
-// import SectionCarousel from "../components/product/SectionCarousel";
-
-
+import { getAllCategories } from "../services/productService";
+import SectionCarousel from "../components/product/SectionCarousel";
+import HomePageLoader from "../components/common/HomePageLoader";
 
 function HomePage() {
-  const [products, setProducts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchCategories = async () => {
       setLoading(true);
-      const limit = 10;
-      const skip = (currentPage - 1) * limit;
-      const response = await getProducts({ limit, skip });
-      setProducts(response.data.products);
-      setTotalPages(Math.ceil(response.data.total / limit));
+      const response = await getAllCategories();
+      setCategories(response.data);
       setLoading(false);
     };
 
-    fetchProducts();
-  }, [currentPage]);
+    fetchCategories();
+  }, []);
 
   if (loading) {
-    return <ProductListLoader />;
+    return <HomePageLoader />;
   }
 
   return (
-    <div className="homepage bg-background text-foreground">
-      <div className="product-list flex flex-col gap-4">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
-      <PaginationControls
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={setCurrentPage}
-      />
+    <div className="homepage bg-background text-foreground grid grid-cols-1 gap-4 p-4 md:grid-cols-2 md:gap-8">
+      {categories.map((category) => (
+        <SectionCarousel
+          key={category.slug}
+          title={category.name}
+          category={category.slug}
+        />
+      ))}
     </div>
   );
 }
